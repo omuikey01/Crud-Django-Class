@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            padding: 20px;
+        }
+
+        label {
+            width: 100px;
+            display: inline-block;
+        }
+
+        input {
+            width: 250px;
+            display: inline-block;
+            padding: 5px 10px;
+            outline: none;
+            margin: 10px;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 5px 10px;
+            width: 200px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Landgin Page </h1>
+    
+    {{msg}}
+
+    <form style="background-color: aquamarine; width: 500px; margin: auto;" method="get" action="{% url 'uikey' %}" >
+        <h1> Registration Page </h1>
+        <label> Name </label>
+        <input type="text" name="name" />
+        <label> Email </label>
+        <input type="email" name="email" />
+        <label> Course </label>
+        <input type="text" name="course" />
+        <label> Batch </label>
+        <input type="text" name="patch" />
+        <label> fees </label>
+        <input type="number" name="fees" />
+
+        <div style="text-align: center;" >
+            <button> Submit </button>
+        </div>
+    </form>
+
+
+    <form method="get" action="{% url 'show' %}" >
+        <button> Show Data </button>
+    </form>
+
+    <table border="2" cellpadding="20px" >
+        <tr>
+            <th> Name </th>
+            <th> Email </th>
+            <th> Course </th>
+            <th> Batch </th>
+            <th> Fees </th>
+            <th> id </th>
+            <th> Edit </th>
+            <th> Delete </th>
+        </tr>
+
+        {% for i in data %}
+        <tr>
+            <td> {{i.name}} </td>
+            <td> {{i.email}} </td>
+            <td> {{i.course}} </td>
+            <td> {{i.batch}} </td>
+            <td> {{i.fees}} </td>
+            <td> {{i.id}} </td>
+            <td> <a href="{% url 'editform' mil=i.id %}" > Edit </a> </td>
+            <td> <a href="{% url 'delete' id=i.id %}" > Delete </a> </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>
